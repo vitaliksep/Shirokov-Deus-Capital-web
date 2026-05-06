@@ -14,7 +14,6 @@ COPY package.json package-lock.json* ./
 RUN npm install
 RUN npm install @auth/core
 RUN npm audit || true
-RUN npm audit fix --force
 # Билд приложения
 FROM base AS builder
 WORKDIR /app
