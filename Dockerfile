@@ -4,6 +4,11 @@ FROM node:18-alpine AS base
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
+# Для образов на базе Ubuntu/Debian:
+RUN apt-get update && apt-get install -y python3 build-essential && rm -rf /var/lib/apt/lists/*
+
+# Для образов на базе Alpine (часто используется для Node.js):
+RUN apk add --no-cache python3 make g++ gcc
 
 # Копируем файлы зависимостей
 COPY package.json package-lock.json* ./
