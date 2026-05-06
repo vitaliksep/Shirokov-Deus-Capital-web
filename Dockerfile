@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Копируем файлы зависимостей
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm install
 
 # Билд приложения
 FROM base AS builder
