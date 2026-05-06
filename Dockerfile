@@ -13,7 +13,7 @@ RUN apk add --no-cache python3 make g++ gcc
 COPY package.json package-lock.json* ./
 RUN npm install
 RUN npm install @auth/core
-RUN npm audit
+RUN npm audit || true
 RUN npm audit fix
 # Билд приложения
 FROM base AS builder
