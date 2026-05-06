@@ -2,6 +2,7 @@ FROM node:18-alpine AS base
 
 # Установка зависимостей только когда это необходимо
 FROM base AS deps
+RUN npm install @auth/core
 RUN apk add --no-cache libc6-compat
 RUN apk add --no-cache python3 build-base
 WORKDIR /app
