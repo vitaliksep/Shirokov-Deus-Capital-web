@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
-export default function BadHook({ flag }) {  
-  const [state, setState] = useState(false); // хук вызывается на верхнем уровне
+
+function BadHook({ flag }) {
   if (flag) {
     const [n, setValue] = useState(0);
     return (
