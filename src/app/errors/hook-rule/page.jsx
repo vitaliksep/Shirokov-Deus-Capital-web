@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "use client";
 import { useState } from "react";
 
@@ -6,6 +7,12 @@ import { useState } from "react";
 // Используется для проверки React DevTools / error boundary
 function BadHook({ flag }) {
   // ⚠️ Намеренное нарушение: хук внутри if-блока (Rules of Hooks)
+=======
+'use client';
+import { useState } from 'react';
+
+function BadHook({ flag }) {
+>>>>>>> 704a5b5d00475b279f7dc72c74c8b05ce837d5dd
   if (flag) {
     const [n, setValue] = useState(0);
     return (
