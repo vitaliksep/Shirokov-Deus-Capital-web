@@ -9,11 +9,9 @@ RUN npm run build
 # Production stage
 FROM node:18-alpine
 WORKDIR /app
-RUN npm install -g serve
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/package*.json ./
+COPY package*.json ./
+RUN npm install --legacy-peer-deps --production
+COPY --from=builder /app/build ./build
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
 EXPOSE 3000
-CMD ["serve", "-s", ".next", "-l", "3000"]
+CMD ["npm", "start"]
