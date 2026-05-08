@@ -11,6 +11,10 @@
 	"dependencies": {
 		"@auth/core": "^0.37.4",
 		"@babel/core": "^7.29.0",
+		"@babel/generator": "^7.29.1",
+		"@babel/preset-react": "^7.28.5",
+		"@babel/preset-typescript": "^7.28.5",
+		"@babel/traverse": "^7.29.0",
 		"@babel/types": "^7.29.0",
 		"@hono/auth-js": "^1.1.1",
 		"@neondatabase/serverless": "^0.10.4",
