@@ -1,12 +1,15 @@
-'use client';
-import { useEffect } from 'react';
+"use client";
+import { useEffect } from "react";
 
-export default function Page() {
+// Тестовая страница: намеренно бросает ошибку внутри async useEffect
+// Используется для проверки обработки асинхронных ошибок
+export default function AsyncEffectErrorPage() {
   useEffect(() => {
     const run = async () => {
-      throw new Error('async effect exploded');
+      throw new Error("async effect exploded");
     };
-    run();
+    run().catch(console.error); // Явно ловим, чтобы не было unhandledrejection
   }, []);
-  return <div>async effect error</div>;
+
+  return <div>async effect error test page</div>;
 }
