@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
 	"name": "web",
 	"private": true,
 	"type": "module",
@@ -95,4 +96,38 @@
 	"overrides": {
 		"next-themes": "^0.3.0"
 	}
+=======
+  "name": "shirokov-deus-capital",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+ "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "argon2": "^0.41.1",
+    "lucide-react": "^0.474.0",
+    "framer-motion": "^12.0.6",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+   "@tanstack/react-query": "^5.62.0",
+   "@auth/core": "^0.37.4",
+    "react-colorful": "^5.6.1",
+    "react-dom": "^19.0.0",
+    "sonner": "^1.7.4",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "autoprefixer": "^10.4.20",
+    "node-gyp": "^11.0.0",
+    "postcss": "^8.5.1",
+    "tailwindcss": "^3.4.17"
+  }
+>>>>>>> 704a5b5d00475b279f7dc72c74c8b05ce837d5dd
 }
