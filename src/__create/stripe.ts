@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 const { partial } = lodash;
-import regularStripe from 'npm:stripe';
+import regularStripe from 'stripe';
 import type Stripe from 'stripe';
 
 const env = process.env;
