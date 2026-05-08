@@ -1,7 +1,11 @@
-'use client';
-import { useState } from 'react';
-export default function BadHook({ flag }) {  
-  const [state, setState] = useState(false); // хук вызывается на верхнем уровне
+"use client";
+import { useState } from "react";
+
+// Тестовая страница: намеренно нарушает правила хуков (Hook Rules)
+// useState вызывается внутри условного блока — это запрещено React
+// Используется для проверки React DevTools / error boundary
+function BadHook({ flag }) {
+  // ⚠️ Намеренное нарушение: хук внутри if-блока (Rules of Hooks)
   if (flag) {
     const [n, setValue] = useState(0);
     return (
@@ -11,10 +15,10 @@ export default function BadHook({ flag }) {
       </div>
     );
   }
-  return 'ok';
+  return <span>ok</span>;
 }
 
-export default function Page() {
+export default function HookRulePage() {
   const [count, setCount] = useState(0);
   return (
     <div>
