@@ -151,6 +151,7 @@ if (process.env.AUTH_SECRET) {
                       ? provider.toLowerCase()
                       : 'google';
                   const newUser = await adapter.createUser({
+                  id: crypto.randomUUID(), // добавьте эту строку
                     emailVerified: null,
                     email,
                     name:
