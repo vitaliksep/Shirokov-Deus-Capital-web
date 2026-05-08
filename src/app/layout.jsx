@@ -1,18 +1,10 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense } from "react";
 import Metrika from "@/components/Metrika";
 import AuroraCanvas from "@/components/AuroraCanvas";
+import QueryProvider from "@/components/QueryProvider";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
-      cacheTime: 1000 * 60 * 30,
-      retry: 1,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+// QueryClient перенесён в QueryProvider (client component),
+// чтобы избежать ошибки серверного рендера Next.js
 
 export const metadata = {
   title:
@@ -150,12 +142,12 @@ export default function RootLayout({ children }) {
         {/* Canvas Aurora — fixed behind all content */}
         <AuroraCanvas />
 
-        <QueryClientProvider client={queryClient}>
+        <QueryProvider>
           <Suspense fallback={null}>
             <Metrika />
           </Suspense>
           {children}
-        </QueryClientProvider>
+        </QueryProvider>
       </body>
     </html>
   );
