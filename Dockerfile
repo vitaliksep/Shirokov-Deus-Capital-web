@@ -1,53 +1,19 @@
-FROM node:18-alpine AS base
-
-# Установка зависимостей только когда это необходимо
-FROM base AS deps
-RUN apk add --no-cache libc6-compat
-RUN apk add --no-cache python3 build-base
+# Build stage
+FROM node:18-alpine AS builder
 WORKDIR /app
-
-# Для образов на базе Alpine (часто используется для Node.js):
-RUN apk add --no-cache python3 make g++ gcc
-
-# Копируем файлы зависимостей
-COPY package.json package-lock.json* ./
-RUN npm install
-RUN npm install serialize-error
-RUN npm install @auth/core
-RUN npm install @tanstack/react-query
-# Билд приложения
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+COPY package*.json ./
+RUN npm install --legacy-peer-deps
 COPY . .
-
-# Переменные окружения для билда (если нужны)
-ENV NEXT_TELEMETRY_DISABLED 1
-
 RUN npm run build
 
-# Production образ
-FROM base AS runner
+# Production stage
+FROM node:18-alpine
 WORKDIR /app
-
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Копируем собранное приложение
+RUN npm install -g serve
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-
-# Автоматически используем output standalone
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
+COPY --from=builder /app/package*.json ./
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 EXPOSE 3000
-
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
-
-CMD ["node", "server.js"]
+CMD ["serve", "-s", ".next", "-l", "3000"]
