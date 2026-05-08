@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "react-router build",
-		"start": "react-router-serve build",
+		"build": "npx react-router build",
+		"start": "npx react-router-serve build",
 		"lint": "next lint"
 	},
 	"dependencies": {
