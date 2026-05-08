@@ -12,9 +12,9 @@ RUN apk add --no-cache python3 make g++ gcc
 # Копируем файлы зависимостей
 COPY package.json package-lock.json* ./
 RUN npm install
+RUN npm install serialize-error
 RUN npm install @auth/core
-RUN npm audit
-RUN npm audit fix
+RUN npm install @tanstack/react-query
 # Билд приложения
 FROM base AS builder
 WORKDIR /app
