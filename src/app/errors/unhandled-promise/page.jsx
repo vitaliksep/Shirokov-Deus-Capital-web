@@ -1,8 +1,13 @@
-import { useEffect } from 'react';
+"use client";
+import { useEffect } from "react";
 
-export default function Fetcher() {
+// Тестовая страница: намеренно вызывает необработанное отклонение Promise
+// Используется для проверки работы error boundary / мониторинга ошибок
+export default function UnhandledPromisePage() {
   useEffect(() => {
-    fetch('/unknown'); // rejection with no catch
+    // Намеренно не добавляем .catch() — тест для unhandledrejection
+    fetch("/unknown");
   }, []);
-  return <div>unhandled promise</div>;
+
+  return <div>unhandled promise test page</div>;
 }
