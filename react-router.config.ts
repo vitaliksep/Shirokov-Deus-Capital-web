@@ -3,4 +3,5 @@
 export default {
   ssr: false,
   appDirectory: "src/app",
+  ignoredRouteFiles: ["**/__create/**"],
 } satisfies Config;
